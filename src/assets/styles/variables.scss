@@ -1,0 +1,57 @@
+/* set base values */
+$text-base-size: 1em;
+$text-scale-ratio: 1.2;
+
+/* type scale */
+$text-xs: calc(1em / ($text-scale-ratio * $text-scale-ratio));
+$text-sm: calc(1em / $text-scale-ratio);
+$text-md: calc(1em * $text-scale-ratio);
+$text-lg: calc(1em * $text-scale-ratio * $text-scale-ratio);
+$text-xl: calc(1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio);
+$text-xxl: calc(
+  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio *
+    $text-scale-ratio
+);
+$text-xxxl: calc(
+  1em * $text-scale-ratio * $text-scale-ratio * $text-scale-ratio *
+    $text-scale-ratio * $text-scale-ratio
+);
+
+// Spacing
+$space-unit: 16px;
+$space-xxs: calc(0.25 * $space-unit); // 4px
+$space-xs: calc(0.5 * $space-unit); // 8px
+$space-sm: calc(0.75 * $space-unit); // 12px
+$space-md: calc(1.25 * $space-unit); // 20px
+$space-lg: calc(2 * $space-unit); // 32px
+$space-xl: calc(3.25 * $space-unit); // 52px
+$space-xxl: calc(5.25 * $space-unit); // 84px
+
+// Setting Up Dynamic Theming
+
+// Luxury Color Palette
+$cream-white: #faf8f5;
+$warm-cream: #f5f1eb;
+$soft-taupe: #e8e0d4;
+$english-rose: #d4a574;
+$deep-bronze: #8b6914;
+$charcoal-grey: #2c2c2c;
+$warm-grey: #6b6b6b;
+$ivory: #fffef7;
+$champagne: #f7f3e9;
+$heritage-gold: #c19a6b;
+
+// Legacy Colors (for backward compatibility)
+$color-brand: $heritage-gold;
+$color-light: $ivory;
+$color-accent: $charcoal-grey;
+$color-dark: $charcoal-grey;
+$gray-color-100: $warm-cream;
+$gray-color-200: $soft-taupe;
+$gray-color-400: $warm-grey;
+
+$success-color: #699468;
+$success-hover-color: #476d47;
+$danger-color: #fc1239;
+$warning-color: #ff9500;
+$primary-danger-hover-color: #dd0327e8;

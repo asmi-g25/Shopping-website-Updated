@@ -1,0 +1,142 @@
+<div class="contact-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+      <a routerLink="/">Home</a> / <span>Contact</span>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>CONTACT US</h1>
+      <p>We'd love to hear from you. Get in touch with our team.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-content">
+      <!-- Contact Form -->
+      <div class="contact-form-section">
+        <h2>Send us a message</h2>
+        <form class="contact-form" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="contactForm.firstName"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="contactForm.lastName"
+                required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="contactForm.email"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                [(ngModel)]="contactForm.phone">
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              [(ngModel)]="contactForm.subject"
+              required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              [(ngModel)]="contactForm.message"
+              rows="6"
+              required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">SEND MESSAGE</button>
+        </form>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info-section">
+        <h2>Get in touch</h2>
+        <div class="contact-info-grid">
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Address</h3>
+              <p>75 Boulevard Saint-Germain<br>Paris, France 75006</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="bi bi-telephone"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Phone</h3>
+              <p>+33 1 42 86 87 88</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email</h3>
+              <p>hello&#64;luxetteparis.com</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="bi bi-clock"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Store Hours</h3>
+              <p>Monday - Saturday: 10AM - 8PM<br>Sunday: 12PM - 6PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Service -->
+        <div class="customer-service">
+          <h3>Customer Service</h3>
+          <p>Need help with your order? Our customer service team is here to assist you.</p>
+          <div class="service-hours">
+            <p><strong>Email Support:</strong> 24/7</p>
+            <p><strong>Phone Support:</strong> Monday - Friday, 9AM - 6PM CET</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="product-detail-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+      <a routerLink="/">Home</a> / <a routerLink="/shop">Shop</a> / <span>{{product?.name}}</span>
+    </div>
+
+    <div class="product-detail" *ngIf="product">
+      <div class="product-images">
+        <div class="main-image">
+          <img [src]="selectedImage" [alt]="product.name">
+        </div>
+        <div class="thumbnail-images">
+          <img 
+            *ngFor="let image of product.images; let i = index" 
+            [src]="image" 
+            [alt]="product.name"
+            [class.active]="selectedImage === image"
+            (click)="selectImage(image)">
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h1>{{product.name}}</h1>
+        
+        <div class="product-price">
+          <span *ngIf="product.salePrice" class="sale-price">Rs. {{product.salePrice}}</span>
+          <span [class.original-price]="product.salePrice">Rs. {{product.price}}</span>
+        </div>
+
+        <div class="product-description">
+          <p>{{product.description}}</p>
+        </div>
+
+        <div class="product-options">
+          <div class="size-selector">
+            <label>Size:</label>
+            <div class="size-options">
+              <button 
+                *ngFor="let size of product.sizes" 
+                [class.selected]="selectedSize === size"
+                (click)="selectSize(size)">
+                {{size}}
+              </button>
+            </div>
+          </div>
+
+          <div class="color-selector" *ngIf="product.colors">
+            <label>Color:</label>
+            <div class="color-options">
+              <div 
+                *ngFor="let color of product.colors" 
+                class="color-option"
+                [style.background-color]="color.value"
+                [class.selected]="selectedColor === color"
+                (click)="selectColor(color)"
+                [title]="color.name">
+              </div>
+            </div>
+          </div>
+
+          <div class="quantity-selector">
+            <label>Quantity:</label>
+            <div class="quantity-controls">
+              <button (click)="decreaseQuantity()">-</button>
+              <span>{{quantity}}</span>
+              <button (click)="increaseQuantity()">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
+          <button class="add-to-cart-btn" (click)="addToCart()">ADD TO CART</button>
+          <button class="wishlist-btn" (click)="addToWishlist()">♡</button>
+        </div>
+
+        <div class="product-details">
+          <div class="detail-item">
+            <h4>Details</h4>
+            <ul>
+              <li *ngFor="let detail of product.details">{{detail}}</li>
+            </ul>
+          </div>
+          
+          <div class="detail-item">
+            <h4>Shipping & Returns</h4>
+            <p>Free shipping on orders over Rs. 2,000. 30-day return policy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="related-products" *ngIf="relatedProducts.length > 0">
+      <h2>YOU MIGHT ALSO LIKE</h2>
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of relatedProducts" [routerLink]="['/product', product.id]">
+          <div class="product-image">
+            <img [src]="product.images[0]" [alt]="product.name">
+          </div>
+          <div class="product-info">
+            <h6>{{product.name}}</h6>
+            <p class="product-price">Rs. {{product.price}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

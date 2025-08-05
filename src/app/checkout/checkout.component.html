@@ -1,0 +1,390 @@
+<div class="checkout-page">
+  <div class="container">
+    <div class="checkout-header">
+      <h1>Checkout</h1>
+      
+      <!-- Progress Steps -->
+      <div class="checkout-steps">
+        <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+          <div class="step-number">1</div>
+          <div class="step-label">Information</div>
+        </div>
+        <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+          <div class="step-number">2</div>
+          <div class="step-label">Shipping</div>
+        </div>
+        <div class="step" [class.active]="currentStep >= 3">
+          <div class="step-number">3</div>
+          <div class="step-label">Payment</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Main Checkout Form -->
+      <div class="col-lg-8">
+        <div class="checkout-form">
+          
+          <!-- Step 1: Customer Information -->
+          <div class="checkout-section" *ngIf="currentStep === 1">
+            <h3>Contact Information</h3>
+            <form>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label for="email" class="form-label required">Email</label>
+                  <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    [(ngModel)]="customerInfo.email"
+                    name="email"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label required">First Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="firstName" 
+                    [(ngModel)]="customerInfo.firstName"
+                    name="firstName"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label required">Last Name</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="lastName" 
+                    [(ngModel)]="customerInfo.lastName"
+                    name="lastName"
+                    required>
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="phone" class="form-label">Phone (Optional)</label>
+                  <input 
+                    type="tel" 
+                    class="form-control" 
+                    id="phone" 
+                    [(ngModel)]="customerInfo.phone"
+                    name="phone">
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 2: Shipping Information -->
+          <div class="checkout-section" *ngIf="currentStep === 2">
+            <h3>Shipping Address</h3>
+            <form>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label for="address" class="form-label required">Address</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="address" 
+                    [(ngModel)]="shippingAddress.address"
+                    name="address"
+                    required>
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="apartment" class="form-label">Apartment, suite, etc. (Optional)</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="apartment" 
+                    [(ngModel)]="shippingAddress.apartment"
+                    name="apartment">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="city" class="form-label required">City</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="city" 
+                    [(ngModel)]="shippingAddress.city"
+                    name="city"
+                    required>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="state" class="form-label required">State</label>
+                  <select 
+                    class="form-select" 
+                    id="state" 
+                    [(ngModel)]="shippingAddress.state"
+                    name="state"
+                    required>
+                    <option value="">Select State</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <!-- Add more states as needed -->
+                  </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="zipCode" class="form-label required">ZIP Code</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="zipCode" 
+                    [(ngModel)]="shippingAddress.zipCode"
+                    name="zipCode"
+                    required>
+                </div>
+              </div>
+            </form>
+
+            <!-- Shipping Methods -->
+            <div class="shipping-methods">
+              <h4>Shipping Method</h4>
+              <div class="shipping-option">
+                <input 
+                  type="radio" 
+                  id="standard" 
+                  name="shipping" 
+                  value="standard" 
+                  [(ngModel)]="shippingMethod">
+                <label for="standard">
+                  <div class="method-info">
+                    <span class="method-name">Standard Shipping</span>
+                    <span class="method-time">5-7 business days</span>
+                  </div>
+                  <span class="method-price">{{ subtotal > 50 ? 'FREE' : '$5.99' }}</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input 
+                  type="radio" 
+                  id="express" 
+                  name="shipping" 
+                  value="express" 
+                  [(ngModel)]="shippingMethod">
+                <label for="express">
+                  <div class="method-info">
+                    <span class="method-name">Express Shipping</span>
+                    <span class="method-time">2-3 business days</span>
+                  </div>
+                  <span class="method-price">$15.99</span>
+                </label>
+              </div>
+              <div class="shipping-option">
+                <input 
+                  type="radio" 
+                  id="overnight" 
+                  name="shipping" 
+                  value="overnight" 
+                  [(ngModel)]="shippingMethod">
+                <label for="overnight">
+                  <div class="method-info">
+                    <span class="method-name">Overnight Shipping</span>
+                    <span class="method-time">1 business day</span>
+                  </div>
+                  <span class="method-price">$25.99</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment Information -->
+          <div class="checkout-section" *ngIf="currentStep === 3">
+            <h3>Payment Information</h3>
+            
+            <!-- Billing Address -->
+            <div class="billing-address">
+              <div class="form-check mb-3">
+                <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  id="sameAsShipping" 
+                  [(ngModel)]="billingAddress.sameAsShipping">
+                <label class="form-check-label" for="sameAsShipping">
+                  Same as shipping address
+                </label>
+              </div>
+
+              <div *ngIf="!billingAddress.sameAsShipping">
+                <h4>Billing Address</h4>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="billingAddress" class="form-label required">Address</label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="billingAddress" 
+                      [(ngModel)]="billingAddress.address"
+                      name="billingAddress"
+                      required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="billingCity" class="form-label required">City</label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="billingCity" 
+                      [(ngModel)]="billingAddress.city"
+                      name="billingCity"
+                      required>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="billingState" class="form-label required">State</label>
+                    <select 
+                      class="form-select" 
+                      id="billingState" 
+                      [(ngModel)]="billingAddress.state"
+                      name="billingState"
+                      required>
+                      <option value="">Select State</option>
+                      <option value="CA">California</option>
+                      <option value="NY">New York</option>
+                      <option value="TX">Texas</option>
+                      <option value="FL">Florida</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="billingZip" class="form-label required">ZIP Code</label>
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      id="billingZip" 
+                      [(ngModel)]="billingAddress.zipCode"
+                      name="billingZip"
+                      required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="payment-details">
+              <h4>Payment Details</h4>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label for="cardNumber" class="form-label required">Card Number</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="cardNumber" 
+                    [(ngModel)]="paymentInfo.cardNumber"
+                    name="cardNumber"
+                    placeholder="1234 5678 9012 3456"
+                    required>
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="nameOnCard" class="form-label required">Name on Card</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nameOnCard" 
+                    [(ngModel)]="paymentInfo.nameOnCard"
+                    name="nameOnCard"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="expiryDate" class="form-label required">Expiry Date</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="expiryDate" 
+                    [(ngModel)]="paymentInfo.expiryDate"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="cvv" class="form-label required">CVV</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="cvv" 
+                    [(ngModel)]="paymentInfo.cvv"
+                    name="cvv"
+                    placeholder="123"
+                    required>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="checkout-navigation">
+            <button 
+              class="btn btn-outline-secondary" 
+              *ngIf="currentStep > 1"
+              (click)="prevStep()">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+            <button 
+              class="btn btn-primary ms-auto" 
+              *ngIf="currentStep < 3"
+              [disabled]="!isStepValid(currentStep)"
+              (click)="nextStep()">
+              Continue <i class="bi bi-arrow-right"></i>
+            </button>
+            <button 
+              class="btn btn-success ms-auto" 
+              *ngIf="currentStep === 3"
+              [disabled]="!isStepValid(currentStep)"
+              (click)="onPlaceOrder()">
+              <i class="bi bi-credit-card"></i> Place Order
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-lg-4">
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          
+          <!-- Cart Items -->
+          <div class="cart-items">
+            <div class="cart-item" *ngFor="let item of cartItems">
+              <div class="item-image">
+                <img [src]="item.product.image" [alt]="item.product.productName">
+                <span class="quantity-badge">{{ item.quantity }}</span>
+              </div>
+              <div class="item-details">
+                <h6>{{ item.product.productName }}</h6>
+                <div class="item-options" *ngIf="item.selectedSize || item.selectedColor">
+                  <span *ngIf="item.selectedSize">Size: {{ item.selectedSize }}</span>
+                  <span *ngIf="item.selectedColor">Color: {{ item.selectedColor }}</span>
+                </div>
+              </div>
+              <div class="item-price">
+                ${{ (item.price * item.quantity).toFixed(2) }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Totals -->
+          <div class="order-totals">
+            <div class="total-line">
+              <span>Subtotal</span>
+              <span>${{ subtotal.toFixed(2) }}</span>
+            </div>
+            <div class="total-line">
+              <span>Shipping</span>
+              <span>{{ shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2) }}</span>
+            </div>
+            <div class="total-line">
+              <span>Tax</span>
+              <span>${{ tax.toFixed(2) }}</span>
+            </div>
+            <div class="total-line total">
+              <span>Total</span>
+              <span>${{ total.toFixed(2) }}</span>
+            </div>
+          </div>
+
+          <!-- Security Badge -->
+          <div class="security-badge">
+            <i class="bi bi-shield-check"></i>
+            <span>Secure checkout powered by SSL encryption</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,236 @@
+<div class="product-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="product-breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/categories">Categories</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="row product-main">
+      <!-- Product Images -->
+      <div class="col-lg-6 product-images">
+        <div class="main-image">
+          <img [src]="selectedImage" [alt]="product.name" class="img-fluid">
+        </div>
+        <div class="thumbnail-images">
+          <div 
+            class="thumbnail" 
+            *ngFor="let image of product.images"
+            [class.active]="image === selectedImage"
+            (click)="selectImage(image)">
+            <img [src]="image" [alt]="product.name" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Details -->
+      <div class="col-lg-6 product-details">
+        <h1 class="product-title">{{ product.name }}</h1>
+        
+        <!-- Rating -->
+        <div class="product-rating">
+          <div class="stars">
+            <i 
+              *ngFor="let star of generateStars(product.rating)" 
+              class="bi"
+              [class.bi-star-fill]="star === 1"
+              [class.bi-star]="star === 0">
+            </i>
+          </div>
+          <span class="rating-text">({{ product.reviews }} reviews)</span>
+        </div>
+
+        <!-- Price -->
+        <div class="product-price">
+          <span class="current-price">${{ product.price }}</span>
+          <span class="original-price" *ngIf="product.originalPrice">${{ product.originalPrice }}</span>
+          <span class="discount" *ngIf="product.originalPrice">
+            Save ${{ (product.originalPrice - product.price).toFixed(2) }}
+          </span>
+        </div>
+
+        <!-- Description -->
+        <div class="product-description">
+          <p>{{ product.description }}</p>
+        </div>
+
+        <!-- Features -->
+        <div class="product-features" *ngIf="product.features?.length">
+          <h6>Features:</h6>
+          <ul>
+            <li *ngFor="let feature of product.features">{{ feature }}</li>
+          </ul>
+        </div>
+
+        <!-- Size Selection -->
+        <div class="product-options" *ngIf="product.sizes?.length">
+          <h6>Size:</h6>
+          <div class="size-options">
+            <button 
+              *ngFor="let size of product.sizes"
+              class="size-btn"
+              [class.selected]="selectedSize === size"
+              (click)="selectSize(size)">
+              {{ size }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Color Selection -->
+        <div class="product-options" *ngIf="product.colors?.length">
+          <h6>Color:</h6>
+          <div class="color-options">
+            <button 
+              *ngFor="let color of product.colors"
+              class="color-btn"
+              [class.selected]="selectedColor === color"
+              (click)="selectColor(color)">
+              {{ color }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="product-quantity">
+          <h6>Quantity:</h6>
+          <div class="quantity-controls">
+            <button class="qty-btn" (click)="decreaseQuantity()">-</button>
+            <input type="number" [(ngModel)]="quantity" min="1" class="qty-input">
+            <button class="qty-btn" (click)="increaseQuantity()">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <div class="product-actions">
+          <button 
+            class="btn btn-primary add-to-cart"
+            [disabled]="!product.inStock"
+            (click)="onAddToCart()">
+            <i class="bi bi-cart-plus"></i>
+            {{ product.inStock ? 'Add to Cart' : 'Out of Stock' }}
+          </button>
+          <button class="btn btn-outline-secondary wishlist-btn">
+            <i class="bi bi-heart"></i>
+            Add to Wishlist
+          </button>
+        </div>
+
+        <!-- Stock Status -->
+        <div class="stock-status">
+          <span class="in-stock" *ngIf="product.inStock">
+            <i class="bi bi-check-circle"></i> In Stock
+          </span>
+          <span class="out-of-stock" *ngIf="!product.inStock">
+            <i class="bi bi-x-circle"></i> Out of Stock
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+      <ul class="nav nav-tabs" id="productTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab">
+            Description
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+            Reviews ({{ product.reviews }})
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab">
+            Shipping & Returns
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="productTabsContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel">
+          <div class="tab-content-inner">
+            <p>{{ product.description }}</p>
+            <div *ngIf="product.features?.length">
+              <h6>Product Features:</h6>
+              <ul>
+                <li *ngFor="let feature of product.features">{{ feature }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
+          <div class="tab-content-inner">
+            <div class="reviews-summary">
+              <div class="average-rating">
+                <span class="rating-number">{{ product.rating }}</span>
+                <div class="stars">
+                  <i 
+                    *ngFor="let star of generateStars(product.rating)" 
+                    class="bi"
+                    [class.bi-star-fill]="star === 1"
+                    [class.bi-star]="star === 0">
+                  </i>
+                </div>
+                <span>Based on {{ product.reviews }} reviews</span>
+              </div>
+            </div>
+            <div class="review-item" *ngFor="let review of [1,2,3]">
+              <div class="reviewer-info">
+                <strong>Customer {{ review }}</strong>
+                <div class="stars">
+                  <i class="bi bi-star-fill" *ngFor="let star of [1,2,3,4,5]"></i>
+                </div>
+              </div>
+              <p>Great product! Excellent quality and fast shipping. Highly recommended.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="shipping" role="tabpanel">
+          <div class="tab-content-inner">
+            <h6>Shipping Information</h6>
+            <ul>
+              <li>Free shipping on orders over $50</li>
+              <li>Standard shipping: 3-5 business days</li>
+              <li>Express shipping: 1-2 business days</li>
+            </ul>
+            <h6>Return Policy</h6>
+            <ul>
+              <li>30-day return policy</li>
+              <li>Items must be in original condition</li>
+              <li>Free returns on defective items</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="related-products" *ngIf="relatedProducts?.length">
+      <h3>You May Also Like</h3>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-4" *ngFor="let relatedProduct of relatedProducts">
+          <div class="product-card" (click)="onGoToProduct(relatedProduct.id)">
+            <div class="product-image">
+              <img [src]="relatedProduct.image" [alt]="relatedProduct.name" class="img-fluid">
+            </div>
+            <div class="product-info">
+              <h6>{{ relatedProduct.name }}</h6>
+              <div class="price">${{ relatedProduct.price }}</div>
+              <div class="rating">
+                <i 
+                  *ngFor="let star of generateStars(relatedProduct.rating)" 
+                  class="bi"
+                  [class.bi-star-fill]="star === 1"
+                  [class.bi-star]="star === 0">
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

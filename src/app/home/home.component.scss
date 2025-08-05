@@ -1,0 +1,905 @@
+// Luxury Color Palette Variables
+$cream-white: #faf8f5;
+$warm-cream: #f5f1eb;
+$soft-taupe: #e8e0d4;
+$english-rose: #d4a574;
+$deep-bronze: #8b6914;
+$charcoal-grey: #2c2c2c;
+$warm-grey: #6b6b6b;
+$ivory: #fffef7;
+$champagne: #f7f3e9;
+$heritage-gold: #c19a6b;
+
+// Elegant Top Announcement
+.top-announcement {
+  background: $heritage-gold;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: $ivory;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// Luxury Hero Banner Section
+.hero-banner {
+  position: relative;
+  height: 650px;
+  background: linear-gradient(rgba(44, 44, 44, 0.4), rgba(44, 44, 44, 0.4)), 
+              url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .hero-content {
+    text-align: center;
+    color: $ivory;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+
+  .hero-text {
+    .hero-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: block;
+      color: $heritage-gold;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      color: $ivory;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      background: transparent;
+      color: $ivory;
+      border: 2px solid $heritage-gold;
+      padding: 16px 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: $heritage-gold;
+        transition: left 0.4s ease;
+        z-index: -1;
+      }
+
+      &:hover {
+        color: $ivory;
+        border-color: $heritage-gold;
+        transform: translateY(-2px);
+
+        &::before {
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Category Section
+.category-section {
+  padding: 100px 0;
+  background: $cream-white;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .category-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    height: 450px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      z-index: 10;
+    }
+
+    .category-image {
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        filter: sepia(10%) saturate(80%);
+      }
+    }
+
+    .category-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(44, 44, 44, 0.8));
+      color: $ivory;
+      padding: 40px 25px;
+      text-align: center;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s ease;
+
+      h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+    }
+
+    &:hover {
+      .category-image img {
+        transform: scale(1.1);
+      }
+
+      .category-overlay {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Popular Picks Section
+.popular-picks {
+  padding: 100px 0;
+  background: $ivory;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: $cream-white;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(44, 44, 44, 0.1);
+    }
+
+    .product-image {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(5%) saturate(85%);
+        transition: transform 0.5s ease;
+      }
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 6px 12px;
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: $ivory;
+
+      &.badge-bestseller {
+        background: $heritage-gold;
+      }
+
+      &.badge-sale {
+        background: $english-rose;
+      }
+
+      &.badge-new {
+        background: $deep-bronze;
+      }
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+
+      h6 {
+        font-family: 'Playfair Display', serif;
+        font-size: 14px;
+        font-weight: 400;
+        color: $charcoal-grey;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .product-price {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        color: $warm-grey;
+
+        .sale-price {
+          color: $english-rose;
+          margin-right: 10px;
+          font-weight: 500;
+        }
+
+        .original-price {
+          text-decoration: line-through;
+          color: #999;
+        }
+      }
+    }
+
+    &:hover .product-image img {
+      transform: scale(1.05);
+    }
+  }
+
+  .view-all-container {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .view-all-btn {
+    background: $charcoal-grey;
+    color: $ivory;
+    border: none;
+    padding: 16px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+      background: $heritage-gold;
+      color: $ivory;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Heritage Features Section
+.features-section {
+  padding: 120px 0;
+  background: $warm-cream;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 20px 0;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: $warm-grey;
+      font-style: italic;
+      margin: 0;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feature-item {
+    text-align: center;
+    padding: 40px 30px;
+
+    .feature-icon {
+      margin-bottom: 25px;
+      color: $heritage-gold;
+      
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: $warm-grey;
+      margin: 0;
+    }
+  }
+}
+
+// Testimonials Section
+.testimonials-section {
+  padding: 120px 0;
+  background: $ivory;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: $cream-white;
+    padding: 40px 35px;
+    text-align: center;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    transition: all 0.4s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(44, 44, 44, 0.08);
+      border-color: rgba(212, 165, 116, 0.2);
+    }
+
+    .testimonial-stars {
+      margin-bottom: 25px;
+      
+      span {
+        color: $heritage-gold;
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+    }
+
+    .testimonial-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: $warm-grey;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      h6 {
+        font-family: 'Playfair Display', serif;
+        font-size: 16px;
+        font-weight: 400;
+        color: $charcoal-grey;
+        margin-bottom: 5px;
+        letter-spacing: 1px;
+      }
+
+      span {
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        color: $heritage-gold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+// FAQ Section
+.faq-section {
+  padding: 120px 0;
+  background: $warm-cream;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0 0 20px 0;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: $warm-grey;
+      margin: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: $ivory;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(44, 44, 44, 0.08);
+      border-color: rgba(212, 165, 116, 0.2);
+    }
+
+    .faq-question {
+      padding: 30px 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+
+      h5 {
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: $charcoal-grey;
+        margin: 0;
+        line-height: 1.4;
+        letter-spacing: 0.5px;
+      }
+
+      .faq-icon {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: $soft-taupe;
+        transition: all 0.3s ease;
+
+        .icon-plus {
+          font-size: 20px;
+          font-weight: 300;
+          color: $warm-grey;
+          transition: all 0.3s ease;
+          transform: rotate(0deg);
+
+          &.active {
+            transform: rotate(45deg);
+            color: $heritage-gold;
+          }
+        }
+      }
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      opacity: 0;
+
+      &.active {
+        max-height: 200px;
+        opacity: 1;
+      }
+
+      p {
+        padding: 0 35px 30px 35px;
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+        color: $warm-grey;
+        margin: 0;
+      }
+    }
+
+    &:hover .faq-question {
+      .faq-icon {
+        background: rgba(212, 165, 116, 0.2);
+
+        .icon-plus {
+          color: $heritage-gold;
+        }
+      }
+    }
+  }
+}
+
+// Newsletter Section
+.newsletter-section {
+  padding: 100px 0;
+  background: $charcoal-grey;
+
+  .newsletter-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .newsletter-text {
+    margin-bottom: 40px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: $ivory;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 0;
+
+    .newsletter-input {
+      flex: 1;
+      padding: 18px 25px;
+      border: 2px solid $heritage-gold;
+      background: transparent;
+      color: $ivory;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      border-radius: 0;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $heritage-gold;
+        background: rgba(212, 165, 116, 0.1);
+      }
+    }
+
+    .newsletter-btn {
+      padding: 18px 30px;
+      background: $heritage-gold;
+      color: $ivory;
+      border: 2px solid $heritage-gold;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: transparent;
+        color: $heritage-gold;
+      }
+    }
+  }
+}
+
+// Journal Section
+.journal-section {
+  padding: 120px 0 100px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: $cream-white;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: $charcoal-grey;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .view-all-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: $heritage-gold;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      border-bottom: 1px solid transparent;
+
+      &:hover {
+        color: $deep-bronze;
+        border-bottom-color: $deep-bronze;
+      }
+    }
+  }
+
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .journal-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.4s ease;
+    background: $ivory;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(44, 44, 44, 0.1);
+
+      .journal-image img {
+        transform: scale(1.05);
+      }
+    }
+
+    .journal-image {
+      height: 220px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        filter: sepia(5%) saturate(85%);
+      }
+    }
+
+    .journal-info {
+      padding: 25px;
+
+      .journal-date {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        color: $heritage-gold;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        font-weight: 500;
+      }
+
+      h6 {
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: $charcoal-grey;
+        margin: 0;
+        line-height: 1.4;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+  .category-grid,
+  .product-grid {
+    max-width: 95%;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 968px) {
+  .hero-banner {
+    height: 500px;
+
+    .hero-text {
+      .hero-title {
+        font-size: 48px;
+      }
+    }
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .features-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 400px;
+    padding: 0 20px;
+
+    .hero-text {
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .category-grid,
+  .product-grid,
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .category-section,
+  .popular-picks,
+  .features-section,
+  .testimonials-section,
+  .faq-section,
+  .journal-section {
+    padding: 60px 0;
+  }
+
+  .newsletter-section {
+    padding: 60px 0;
+  }
+}

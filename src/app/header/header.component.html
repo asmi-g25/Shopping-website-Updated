@@ -1,0 +1,78 @@
+<!-- Luxury Top Banner -->
+<div class="top-banner">
+  <div class="container">
+    <div class="banner-content">
+      <span>COMPLIMENTARY SHIPPING ON ORDERS OVER £200</span>
+      <span class="divider">•</span>
+      <span>EXQUISITE HANDCRAFTED PIECES</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<div class="header__wrapper">
+  <div class="container">
+    <div class="header-content">
+      <!-- Search Icon -->
+      <div class="header-search-icon">
+        <img src="assets/icons/search.png" alt="Search Icon" />
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="header-nav">
+        <div class="nav-item">
+          <a routerLink="/shop" class="nav-link">SHOP</a>
+        </div>
+        <div class="nav-item">
+          <a routerLink="/categories" class="nav-link">CATEGORIES</a>
+        </div>
+      </div>
+
+      <!-- Brand Logo -->
+      <div class="header__brand" routerLink="/">
+        <div class="brand-logo">
+          <span class="brand-name">LUXETTE</span>
+          <span class="brand-subtitle">LONDON</span>
+        </div>
+      </div>
+
+      <!-- Right Navigation -->
+      <div class="header-nav-right">
+        <div class="nav-item">
+          <a routerLink="/journal" class="nav-link">JOURNAL</a>
+        </div>
+        <div class="nav-item">
+          <a routerLink="/about" class="nav-link">ABOUT</a>
+        </div>
+        <div class="nav-item">
+          <a routerLink="/contact" class="nav-link">CONTACT</a>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header__action">
+        <div class="header__action--item c-pointer" routerLink="/login">
+          <img src="assets/icons/user.png" alt="User Icon" />
+        </div>
+        <div class="header__action--item c-pointer bag" routerLink="/cart">
+          <img src="assets/icons/bag.png" alt="Bag icon" />
+          <span class="cart-count">{{ cartItemCount || 0 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Search -->
+    <div class="mobile-only">
+      <div class="header__search">
+        <img src="assets/icons/search.png" alt="Search Icon" />
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search products..."
+          [(ngModel)]="searchText"
+          (keydown.enter)="searchProducts($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

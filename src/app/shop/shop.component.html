@@ -1,0 +1,88 @@
+<div class="shop-page">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+      <a routerLink="/">Home</a> / <span>Shop</span>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>SHOP</h1>
+    </div>
+
+    <!-- Filters and Sort -->
+    <div class="shop-controls">
+      <div class="filters">
+        <div class="filter-group">
+          <h4>COLOR</h4>
+          <div class="color-filters">
+            <div class="color-option black"></div>
+            <div class="color-option gray"></div>
+            <div class="color-option white"></div>
+            <div class="color-option navy"></div>
+            <div class="color-option pink"></div>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <h4>SIZE</h4>
+          <div class="size-filters">
+            <label><input type="checkbox"> XS (14)</label>
+            <label><input type="checkbox"> S (26)</label>
+            <label><input type="checkbox"> M (22)</label>
+            <label><input type="checkbox"> L (22)</label>
+            <label><input type="checkbox"> XL (18)</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>PRODUCT TYPE</h4>
+          <div class="type-filters">
+            <label><input type="checkbox"> Dresses (62)</label>
+            <label><input type="checkbox"> Tops (45)</label>
+            <label><input type="checkbox"> Bottoms (38)</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>AVAILABILITY</h4>
+          <div class="availability-filters">
+            <label><input type="checkbox"> In stock (118)</label>
+            <label><input type="checkbox"> Out of stock (32)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-section">
+        <div class="sort-bar">
+          <span>22 products</span>
+          <select class="sort-select">
+            <option>Best selling</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest</option>
+          </select>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid">
+          <div class="product-card" *ngFor="let product of products" [routerLink]="['/product', product.id]">
+            <div class="product-image">
+              <img [src]="product.images[0]" [alt]="product.name">
+              <div class="product-badge" *ngIf="product.badge" [class]="'badge-' + product.badge">
+                {{product.badge}}
+              </div>
+            </div>
+            <div class="product-info">
+              <h6>{{product.name}}</h6>
+              <p class="product-price">
+                <span *ngIf="product.salePrice" class="sale-price">Rs. {{product.salePrice}}</span>
+                <span [class.original-price]="product.salePrice">Rs. {{product.price}}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
